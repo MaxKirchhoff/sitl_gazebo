@@ -11,12 +11,12 @@
         -->
         <mass>2</mass>
         <inertia>
-          <ixx>0.2</ixx>
+          <ixx>0.02</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.4</iyy>
+          <iyy>0.04</iyy>
           <iyz>0</iyz>
-          <izz>0.4</izz>
+          <izz>0.04</izz>
         </inertia>
       </inertial>
       <self_collide>0</self_collide>
@@ -50,133 +50,7 @@
         <transparency>0</transparency>
       </visual>
       
-      <!-- Colored markers used for visual localization -->
-      <visual name='marker0'>
-        <pose frame=''>0.2 0 0 0 -0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <lighting>1</lighting>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-          <ambient>0.0 0.0 0.0 1</ambient>
-          <diffuse>0.0 0.0 0.0 1</diffuse>
-          <specular>0.0 0.0 0.0 1</specular>
-          <emissive>1.0 0.0 0.0 1</emissive>
-        </material>
-        <cast_shadows>0</cast_shadows>
-        <transparency>0</transparency>
-      </visual>
-      <visual name='marker1'>
-        <pose frame=''>0 0.07 0.07 0 -0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <lighting>1</lighting>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-          <ambient>0.0 0.0 0.0 1</ambient>
-          <diffuse>0.0 0.0 0.0 1</diffuse>
-          <specular>0.0 0.0 0.0 1</specular>
-          <emissive>0.0 1.0 0.0 1</emissive>
-        </material>
-        <cast_shadows>0</cast_shadows>
-        <transparency>0</transparency>
-      </visual>
-      <visual name='marker2'>
-        <pose frame=''>0.05 0.07 -0.07 0 -0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <lighting>1</lighting>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-          <ambient>0.0 0.0 0.0 1</ambient>
-          <diffuse>0.0 0.0 0.0 1</diffuse>
-          <specular>0.0 0.0 0.0 1</specular>
-          <emissive>0.0 0.0 1.0 1</emissive>
-        </material>
-        <cast_shadows>0</cast_shadows>
-        <transparency>0</transparency>
-      </visual>
-      <visual name='marker3'>
-        <pose frame=''>0 -0.1 -0.1 0 -0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <lighting>1</lighting>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-          <ambient>0.0 0.0 0.0 1</ambient>
-          <diffuse>0.0 0.0 0.0 1</diffuse>
-          <specular>0.0 0.0 0.0 1</specular>
-          <emissive>1.0 1.0 0.0 1</emissive>
-        </material>
-        <cast_shadows>0</cast_shadows>
-        <transparency>0</transparency>
-      </visual>
-      <visual name='marker4'>
-        <pose frame=''>-0.02 -0.07 0.07 0 -0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <lighting>1</lighting>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-          <ambient>0.0 0.0 0.0 1</ambient>
-          <diffuse>0.0 0.0 0.0 1</diffuse>
-          <specular>0.0 0.0 0.0 1</specular>
-          <emissive>0 1.0 1.0 1</emissive>
-        </material>
-        <cast_shadows>0</cast_shadows>
-        <transparency>0</transparency>
-      </visual>
-      <visual name='marker5'>
-        <pose frame=''>-0.20 0 0 0 -0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <lighting>1</lighting>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-          <ambient>0.0 0.0 0.0 1</ambient>
-          <diffuse>0.0 0.0 0.0 1</diffuse>
-          <specular>0.0 0.0 0.0 1</specular>
-          <emissive>1.0 0.0 1.0 1</emissive>
-        </material>
-        <cast_shadows>0</cast_shadows>
-        <transparency>0</transparency>
-      </visual>
+     
 
       <gravity>0</gravity>
       <collision name='base_link_collision'>
@@ -246,7 +120,7 @@
       <gravity>0</gravity>
     </link>
     <link name='rotor_0'>
-      <pose frame=''>0 0.042426 0.042426 0 1.570796 0</pose>
+      <pose frame=''>-0.05 0.2 0.2 0 1.570796 0</pose>
       <self_collide>0</self_collide>
       <kinematic>0</kinematic>
       <velocity_decay/>
@@ -256,7 +130,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://hippocampus/meshes/hippocampus_prop_cw.stl</uri>
+            <uri>model://hippocampus/meshes/hippocampus_prop_ccw.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -324,7 +198,7 @@
       </collision>
     </link>
     <link name='rotor_1'>
-      <pose frame=''>0 -0.042426 0.042426 0 1.570796 0</pose>
+      <pose frame=''>-0.05 -0.2 0.2 0 1.570796 0</pose>
       <self_collide>0</self_collide>
       <kinematic>0</kinematic>
       <velocity_decay/>
@@ -334,7 +208,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://hippocampus/meshes/hippocampus_prop_ccw.stl</uri>
+            <uri>model://hippocampus/meshes/hippocampus_prop_cw.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -402,7 +276,7 @@
       </collision>
     </link>
     <link name='rotor_2'>
-      <pose frame=''>0 -0.042426 -0.042426 0 1.570796 0</pose>
+      <pose frame=''>-0.05 -0.2 -0.2 0 1.570796 0</pose>
       <self_collide>0</self_collide>
       <kinematic>0</kinematic>
       <velocity_decay/>
@@ -412,7 +286,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://hippocampus/meshes/hippocampus_prop_cw.stl</uri>
+            <uri>model://hippocampus/meshes/hippocampus_prop_ccw.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -480,7 +354,7 @@
       </collision>
     </link>
     <link name='rotor_3'>
-      <pose frame=''>0 0.042426 -0.042426 0 1.570796 0</pose>
+      <pose frame=''>-0.05 0.2 -0.2 0 1.570796 0</pose>
       <self_collide>0</self_collide>
       <kinematic>0</kinematic>
       <velocity_decay/>
@@ -732,8 +606,8 @@
       <robotNamespace>hippocampus</robotNamespace>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <linkName>base_link</linkName>
-      <motorForceConstant>10.0</motorForceConstant>
-      <motorTorqueConstant>0.5</motorTorqueConstant>
+      <motorForceConstant>30.0</motorForceConstant>
+      <motorTorqueConstant>5.0</motorTorqueConstant>
       
       <!--Parameters from MATLAB simulation-->
       <!--addedMassLinear>1.94 6 6</addedMassLinear>
@@ -742,7 +616,7 @@
       <dampingAngular>5 8 8</dampingAngular-->
       
       <!--Parameters for convenient dynamics-->
-      <dampingLinear>100 10 10</dampingLinear>
+      <dampingLinear>10 10 10</dampingLinear>
       <dampingAngular>5 5 5</dampingAngular>
     </plugin>
     <plugin name='rotors_gazebo_imu_plugin' filename='librotors_gazebo_imu_plugin.so'>
@@ -764,7 +638,7 @@
       <robotNamespace>hippocampus</robotNamespace>
       <jointName>rotor_0_joint</jointName>
       <linkName>rotor_0</linkName>
-      <turningDirection>cw</turningDirection>
+      <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
       <maxRotVelocity>838</maxRotVelocity>
@@ -800,7 +674,7 @@
       <robotNamespace>hippocampus</robotNamespace>
       <jointName>rotor_2_joint</jointName>
       <linkName>rotor_2</linkName>
-      <turningDirection>cw</turningDirection>
+      <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
       <maxRotVelocity>838</maxRotVelocity>
