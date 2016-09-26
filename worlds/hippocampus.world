@@ -1,25 +1,909 @@
-<?xml version="1.0" ?>
-<sdf version="1.5">
-  <world name="default">
-    <!-- A global light source -->
-    <!--include>
-      <uri>model://sun</uri>
-    </include-->
-    
-    <include>
-      <uri>model://collision_tank</uri>
-    </include>
+<sdf version='1.5'>
+  <world name='default'>
 
-    <include>
-      <uri>model://hippocampus</uri>
-      <pose>0 0 0 0 0 0</pose>
-    </include>
-    
-    <include>
-      <uri>model://ros_camera</uri>
-      <pose>2 0 0 0 3.14 0</pose>
-    </include>
 
+    <model name='hippocampus'>
+      <link name='base_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.2</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.4</iyy>
+            <iyz>0</iyz>
+            <izz>0.4</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <velocity_decay/>
+        <gravity>0</gravity>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0.0 1.57075 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://hippocampus/meshes/hippocampus.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>__default__</uri>
+              <name>Gazebo/Yellow</name>
+            </script>
+            <ambient>0.01 0.01 0.01 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>1</cast_shadows>
+          <transparency>0</transparency>
+        </visual>
+        <gravity>0</gravity>
+        <collision name='base_link_collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03</radius>
+              <length>0.36</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+      </link>
+      <link name='hippocampus/imu_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>0.015</mass>
+          <inertia>
+            <ixx>1e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-05</iyy>
+            <iyz>0</iyz>
+            <izz>1e-05</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>0</gravity>
+      </link>
+      <link name='rotor_0'>
+        <pose frame=''>-0.05 0.2 0.2 3.14159 1.57079 3.14159</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <velocity_decay/>
+        <gravity>0</gravity>
+
+        <collision name='rotor_0_collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.02 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.06</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+      </link>
+      <link name='rotor_1'>
+        <pose frame=''>-0.05 -0.2 0.2 3.14159 1.57079 3.14159</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <velocity_decay/>
+        <gravity>0</gravity>
+        <collision name='rotor_1_collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.02 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.06</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+      </link>
+      <link name='rotor_2'>
+        <pose frame=''>-0.05 -0.2 -0.2 3.14159 1.57079 3.14159</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <velocity_decay/>
+        <gravity>0</gravity>
+        <collision name='rotor_2_collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.02 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.06</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+      </link>
+      <link name='rotor_3'>
+        <pose frame=''>-0.05 0.2 -0.2 3.14159 1.57079 3.14159</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <velocity_decay/>
+        <gravity>0</gravity>
+        <collision name='rotor_3_collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.02 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.06</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+      </link>
+
+
+
+
+
+      <!--link name='rotor_0_only_visual'>
+      <pose frame=''>-0.05 0.0388905 0.0388905 0 1.570796 0</pose>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <gravity>0</gravity>
+      <visual name='rotor_0_visual_only'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://hippocampus/meshes/hippocampus_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>__default__</uri>
+          </script>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.3 0.3 0.3 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+          <emissive>0 0 0 1</emissive>
+          <shader type='vertex'>
+            <normal_map>__default__</normal_map>
+          </shader>
+        </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
+      </visual>
+    </link>
+    <link name='rotor_1_only_visual'>
+      <pose frame=''>-0.05 -0.0388905 0.0388905 0 1.570796 0</pose>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <gravity>0</gravity>
+      <visual name='rotor_1_visual_only'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://hippocampus/meshes/hippocampus_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>__default__</uri>
+          </script>
+          <ambient>0.175 0.175 0.175 1</ambient>
+          <diffuse>0.175 0.175 0.175 1</diffuse>
+          <specular>0.175 0.175 0.175 1</specular>
+          <emissive>0 0 0 1</emissive>
+          <shader type='vertex'>
+            <normal_map>__default__</normal_map>
+          </shader>
+        </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
+      </visual>
+      
+    </link>
+    <link name='rotor_2_only_visual'>
+      <pose frame=''>-0.05 -0.0388905 -0.0388905 0 1.570796 0</pose>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <gravity>0</gravity>
+      <visual name='rotor_2_visual_only'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://hippocampus/meshes/hippocampus_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>__default__</uri>
+          </script>
+          <ambient>0.175 0.175 0.175 1</ambient>
+          <diffuse>0.175 0.175 0.175 1</diffuse>
+          <specular>0.175 0.175 0.175 1</specular>
+          <emissive>0 0 0 1</emissive>
+          <shader type='vertex'>
+            <normal_map>__default__</normal_map>
+          </shader>
+        </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
+      </visual>
+      
+    </link>
+    <link name='rotor_3_only_visual'>
+      <pose frame=''>-0.05 0.0388905 -0.0388905 0 1.570796 0</pose>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <gravity>0</gravity>
+      <visual name='rotor_3_visual_only'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://hippocampus/meshes/hippocampus_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>__default__</uri>
+          </script>
+          <ambient>0.175 0.175 0.175 1</ambient>
+          <diffuse>0.175 0.175 0.175 1</diffuse>
+          <specular>0.175 0.175 0.175 1</specular>
+          <emissive>0 0 0 1</emissive>
+          <shader type='vertex'>
+            <normal_map>__default__</normal_map>
+          </shader>
+        </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
+      </visual>
+    </link>
+
+   <joint name='rotor_0_visual_only_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_0_only_visual</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+<joint name='rotor_1_visual_only_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_1_only_visual</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+<joint name='rotor_2_visual_only_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_2_only_visual</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+<joint name='rotor_3_visual_only_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_3_only_visual</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint-->
+
+
+
+
+     
+
+
+
+
+      <joint name='hippocampus/imu_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>hippocampus/imu_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='rotor_0_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_0</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='rotor_1_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_1</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='rotor_2_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_2</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='rotor_3_joint' type='revolute'>
+        <parent>base_link</parent>
+        <child>rotor_3</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>-1</effort>
+            <velocity>-1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+            <suspension>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </suspension>
+          </ode>
+        </physics>
+      </joint>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <plugin name='mavlink_interface' filename='librotors_gazebo_mavlink_interface.so'>
+        <robotNamespace>hippocampus</robotNamespace>
+        <imuSubTopic>/imu</imuSubTopic>
+        <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
+        <inputScaling>1.0</inputScaling>
+        <inputOffset>0.0</inputOffset>
+        <zeroPositionArmed>0.0</zeroPositionArmed>
+      </plugin>
+      <plugin name='uuv_plugin' filename='librotors_gazebo_uuv_plugin.so'>
+        <robotNamespace>hippocampus</robotNamespace>
+        <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+        <linkName>base_link</linkName>
+        <motorForceConstant>70.0</motorForceConstant>
+        <motorTorqueConstant>5.0</motorTorqueConstant>
+        <dampingLinear>5 5 5</dampingLinear>
+        <dampingAngular>5 10 10</dampingAngular>
+      </plugin>
+      <plugin name='rotors_gazebo_imu_plugin' filename='librotors_gazebo_imu_plugin.so'>
+        <robotNamespace>hippocampus</robotNamespace>
+        <linkName>hippocampus/imu_link</linkName>
+        <imuTopic>/imu</imuTopic>
+        <gyroscopeNoiseDensity>0.0003394</gyroscopeNoiseDensity>
+        <gyroscopeRandomWalk>3.8785e-05</gyroscopeRandomWalk>
+        <gyroscopeBiasCorrelationTime>1000.0</gyroscopeBiasCorrelationTime>
+        <gyroscopeTurnOnBiasSigma>0.0087</gyroscopeTurnOnBiasSigma>
+        <accelerometerNoiseDensity>0.004</accelerometerNoiseDensity>
+        <accelerometerRandomWalk>0.006</accelerometerRandomWalk>
+        <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
+        <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
+      </plugin>
+      <plugin name='front_right_motor_model' filename='librotors_gazebo_motor_model.so'>
+        <robotNamespace>hippocampus</robotNamespace>
+        <jointName>rotor_0_joint</jointName>
+        <linkName>rotor_0</linkName>
+        <turningDirection>cw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>838</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.016</momentConstant>
+        <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+        <motorNumber>0</motorNumber>
+        <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/0</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>0.05</rotorVelocitySlowdownSim>
+        <applyForce>false</applyForce>
+      </plugin>
+      <plugin name='back_left_motor_model' filename='librotors_gazebo_motor_model.so'>
+        <robotNamespace>hippocampus</robotNamespace>
+        <jointName>rotor_1_joint</jointName>
+        <linkName>rotor_1</linkName>
+        <turningDirection>cw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>838</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.016</momentConstant>
+        <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+        <motorNumber>1</motorNumber>
+        <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>0.05</rotorVelocitySlowdownSim>
+        <applyForce>false</applyForce>
+      </plugin>
+      <plugin name='front_left_motor_model' filename='librotors_gazebo_motor_model.so'>
+        <robotNamespace>hippocampus</robotNamespace>
+        <jointName>rotor_2_joint</jointName>
+        <linkName>rotor_2</linkName>
+        <turningDirection>cw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>838</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.016</momentConstant>
+        <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+        <motorNumber>2</motorNumber>
+        <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/2</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>0.05</rotorVelocitySlowdownSim>
+        <applyForce>false</applyForce>
+      </plugin>
+      <plugin name='back_right_motor_model' filename='librotors_gazebo_motor_model.so'>
+        <robotNamespace>hippocampus</robotNamespace>
+        <jointName>rotor_3_joint</jointName>
+        <linkName>rotor_3</linkName>
+        <turningDirection>cw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>838</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.016</momentConstant>
+        <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+        <motorNumber>3</motorNumber>
+        <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/3</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>0.05</rotorVelocitySlowdownSim>
+        <applyForce>false</applyForce>
+      </plugin>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </model>
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
       <ode>
@@ -41,5 +925,92 @@
       <real_time_update_rate>500</real_time_update_rate>
       <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     </physics>
+    <scene>
+      <ambient>0.25 0.64 0.99 1</ambient>
+      <background>0.25 0.64 0.99 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>7.51994 -4 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <state world_name='default'>
+      <sim_time>467 952000000</sim_time>
+      <real_time>469 687642712</real_time>
+      <wall_time>1473541111 339049731</wall_time>
+      <iterations>233976</iterations>
+      <model name='ground_plane'>
+        <pose frame=''>4.40807 -2 0 0 -0 0</pose>
+        <link name='link'>
+          <pose frame=''>4.40807 -2 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='hippocampus'>
+        <pose frame=''>1.66857 -0.85916 1.66799 0.002737 -0.008961 3.12086</pose>
+        <link name='base_link'>
+          <pose frame=''>1.66857 -0.85916 1.66799 0.002737 -0.008961 3.12086</pose>
+          <velocity>1e-06 -5e-06 8e-06 -0.001548 -0.000284 -0.001344</velocity>
+          <acceleration>-0.000266 0.001588 0.00041 0.00815 0.02439 0.002975</acceleration>
+          <wrench>-0.000532 0.003175 0.00082 0 -0 0</wrench>
+        </link>
+        <link name='hippocampus/imu_link'>
+          <pose frame=''>1.66857 -0.85916 1.66799 0.002737 -0.008961 3.12086</pose>
+          <velocity>1e-06 -6e-06 9e-06 -0.001545 -0.000284 -0.001345</velocity>
+          <acceleration>-0.000212 0.002688 -0.000154 0.006163 0.025356 0.003463</acceleration>
+          <wrench>-3e-06 4e-05 -2e-06 0 -0 0</wrench>
+        </link>
+        <link name='rotor_0'>
+          <pose frame=''>1.71622 -1.05964 1.86808 -1.56183 0.048994 1.5505</pose>
+          <velocity>-0.000333 0.000239 0.000333 -0.03985 0.000509 -0.001008</velocity>
+          <acceleration>0.001475 -0.000257 -0.001711 0.000511 0.024696 -0.000153</acceleration>
+          <wrench>0.001475 -0.000257 -0.001711 0 -0 0</wrench>
+        </link>
+        <link name='rotor_1'>
+          <pose frame=''>1.7245 -0.65973 1.86698 1.56182 0.055668 -1.59203</pose>
+          <velocity>0.000208 0.00023 -0.000282 0.026292 -0.00088 -0.001623</velocity>
+          <acceleration>0.001404 0.001839 0.001554 0.000238 0.016278 -0.011122</acceleration>
+          <wrench>0.001404 0.001839 0.001554 0 -0 0</wrench>
+        </link>
+        <link name='rotor_2'>
+          <pose frame=''>1.7209 -0.66075 1.467 1.56184 0.005072 -1.59157</pose>
+          <velocity>0.000342 -0.000401 -0.000293 -0.019552 5.8e-05 -0.00122</velocity>
+          <acceleration>0.00218 -0.004123 -0.004097 7.2e-05 0.00997 -0.01504</acceleration>
+          <wrench>0.00218 -0.004123 -0.004097 0 -0 0</wrench>
+        </link>
+        <link name='rotor_3'>
+          <pose frame=''>1.71261 -1.06066 1.46809 -1.55628 0.906009 1.56149</pose>
+          <velocity>-0.000212 -0.000381 0.000343 -0.03204 0.000354 -0.001136</velocity>
+          <acceleration>-0.004537 -0.000591 0.003362 0.000324 0.028139 -0.028949</acceleration>
+          <wrench>-0.004537 -0.000591 0.003362 0 -0 0</wrench>
+        </link>
+      </model>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>2.68791 -1.78132 2.03704 0 0.275643 2.35619</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
   </world>
 </sdf>
